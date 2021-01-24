@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="div header p-2 ">
+        <h1 class="white ">Discussion Portal</h1>
+    </div>
+    <div class="main row  m-0">
+        <div class=" col-md-6 leftpanel">
+            <div class=" btnsrc row p-3">
+            <button class="btn btn-primary mx-2">New Question Form</button>
+            
+        <input type="input" class="col-md-4 mx-3 rounded " placeholder="Search Questions...">
+        </div>
+        <div class="questions">
+            <div class="onequestion"></div>
+
+        </div>
+      
+        
+        
+        </div>
+        <div class="col-md-6 form">
+            <div class="container my-2">
+                <h1>
+                    Welcome to Discussion Portal!
+                </h1>
+                <p>
+                    Enter a subect and question to get started
+
+                </p>
+                <input type="text" placeholder="Subject" class="col-md-5 form-control" id="subject">
+              
+                <textarea class="my-3 form-control " rows="2" placeholder="Question" id="des"></textarea>
+                <div class="row justify-content-end">
+                <button class="btn btn-primary mr-3" type='submit' onclick="addQues()">Submit</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+<script src="Index.js"></script>
+
+</html>
