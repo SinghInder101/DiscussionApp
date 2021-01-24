@@ -15,3 +15,28 @@
 .leftpanel{
     background-color: blueviolet;
 }
+.leftpanel{
+    background-color: #F5F5F5;
+    border:2px solid #D3D3D3;
+    min-height:90vh;
+}
+.onequestion{
+    border-bottom:1px solid #D3D3D3;
+    color:grey;
+}
+.displayques{
+    background-color:#F5F5F5;
+}
+.responses{
+    background-color: #f5f5f5;
+}
+.oneres{
+    border-bottom: 1px solid #D5D5D5;
+}
+.questions{
+    height:84.4vh;
+}
+.fa-15x{
+size:1.5em
+
+}

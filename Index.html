@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="Index.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -13,16 +14,19 @@
 <body>
     <div class="div header p-2 ">
         <h1 class="white ">Discussion Portal</h1>
+        
     </div>
     <div class="main row  m-0">
         <div class=" col-md-6 leftpanel">
             <div class=" btnsrc row p-3">
             <button class="btn btn-primary mx-2">New Question Form</button>
             
-        <input type="input" class="col-md-4 mx-3 rounded " placeholder="Search Questions...">
+        <input type="input" class="col-md-4 mx-3 rounded searchbar" placeholder="Search Questions..." onkeyup="search(event)">
         </div>
-        <div class="questions">
-            <div class="onequestion"></div>
+        <div class="questions overflow-auto">
+            <div class="onequestion">
+                
+            </div>
 
         </div>
       
@@ -30,7 +34,7 @@
         
         </div>
         <div class="col-md-6 form">
-            <div class="container my-2">
+            <div class="container my-2" id="initialform" >
                 <h1>
                     Welcome to Discussion Portal!
                 </h1>
@@ -45,6 +49,29 @@
                 <button class="btn btn-primary mr-3" type='submit' onclick="addQues()">Submit</button>
                 </div>
 
+            </div>
+            <div class="container my-2" id="response-form" hidden>
+                <h3>Question</h3>
+                <div class="displayques p-2">
+                    <h4>Who is Habibullah?</h4>
+                    <p>How to use Habibullah?</p>
+                </div>
+                <div class="row justify-content-end my-1">
+                    <button class="btn btn-primary mr-3 resolve" type='submit'  onclick="resolve(id)">Resolve</button>
+                    </div>
+               
+               <h3 class="heading">Respones</h3>
+                <div class="responses p-2" >
+                  
+                </div>
+                <br>
+                <h3>Add Response</h3>
+                <input type="text" placeholder="Enter Name" class="col-md-3 form-control" id="name">
+                <textarea rows="3" class="form-control" placeholder="Enter Comment" id="comment"></textarea><br>
+                <div class="row justify-content-end">
+                    <button class="btn btn-primary mr-4 responsesubmit" type="submit" onclick="addResponse(id)">Submit</button>
+                </div>
+            
             </div>
 
         </div>
