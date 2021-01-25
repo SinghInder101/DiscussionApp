@@ -2,6 +2,10 @@ var count=0;
 var initialform=document.getElementById("initialform");
 var finalform = document.getElementById("response-form");
 var fav= '<i class="fas fa-heart fa-15x" onclick="heart(id)" id="0"></i>';
+var upvote = '<div class="col-md-1 ubtn"  onclick="Upvote(id)"><i class="fas fa-arrow-up"></i> ';
+var downvote = '<div class="col-md-1 dbtn"  onclick="Downvote(id)"><i class="fas fa-arrow-down"></i> ';
+var ubtn = document.getElementsByClassName("ubtn");
+var dbtn = document.getElementsByClassName("dbtn");
 var questions=[
     
 
@@ -20,10 +24,9 @@ function addQues(){
             id:count,
             subject: sub.value,
             question: question.value,
-            responses:[
-                
-
-            ]
+            responses:[],
+            upvotes: 0,
+            downvotes: 0
         }
     
     questions.push(curr);
@@ -34,19 +37,31 @@ function addQues(){
     quesdiv.setAttribute("id",count);
     var subject = document.createElement("h1");
     var description =document.createElement("p");
+    var innerdiv =document.createElement("div")
+    innerdiv.setAttribute("class","row");
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+upvote+ questions[count].upvotes+" </div>";
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+downvote+questions[count].downvotes+" </div>";
 
     description.innerHTML=question.value;
     subject.innerHTML=sub.value;
 
     quesdiv.appendChild(subject);
     quesdiv.appendChild(description);
-    quesdiv.innerHTML=quesdiv.innerHTML+fav;
+    quesdiv.appendChild(innerdiv);
+    
+   
+    
+   
+
+  
     document.getElementsByClassName("questions")[0].appendChild(quesdiv);
 
     sub.value="";
     question.value="";
+    ubtn[count].setAttribute("id",count);
+    dbtn[count].setAttribute("id",count);
     count++;
-    fav='<i class="fas fa-heart fa-15x" onclick="heart(id)" id='+count+'></i>' 
+   
 }
 
     
@@ -68,6 +83,7 @@ function displayQues(id){
    quest.appendChild(h);
    quest.appendChild(p);
    var resp= document.getElementsByClassName("responses")[0];
+   resp.innerHTML="";
    
    
    for(var i=0;i<questions[id].responses.length;i++){
@@ -114,7 +130,9 @@ function addResponse(id){
    response.appendChild(div);
      curr = {
         name:name.value,
-        comment:soln.value
+        comment:soln.value,
+        upvotes:0,
+        downvotes:0
     }
    
     questions[id].responses.push(curr);
@@ -144,19 +162,26 @@ function resolve(id){
    subject.innerHTML=questions[i].subject;
     var question= document.createElement("p");
     question.innerHTML=questions[i].question;
+    var innerdiv =document.createElement("div")
+    innerdiv.setAttribute("class","row");
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+upvote+ questions[i].upvotes+" </div>";
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+downvote+questions[i].downvotes+" </div>";
     quesdiv.appendChild(subject);
     quesdiv.appendChild(question);
+    quesdiv.appendChild(innerdiv);
     contain.appendChild(quesdiv);
+    ubtn[i].setAttribute("id",i);
+    dbtn[i].setAttribute("id",i);
+
 
 
 
     }
-
-  
-
-
 }
 function search(event){
+
+    
+    
    var val=document.getElementsByClassName("searchbar")[0];
    var result = questions.filter((q)=>q.subject.includes(val.value));
  
@@ -169,18 +194,31 @@ function search(event){
     quesdiv.setAttribute("id",result[i].id);
     var subject=document.createElement("h1");
     var ans=result[i].subject;
+
     if(val.value!=""){
         var x = result[i].subject.indexOf(val.value);
          ans= result[i].subject.slice(0,x)+"<span style='background-color: yellow'>"+val.value+"</span>"+result[i].subject.slice(x+val.value.length,result[i].subject.length);
      
 
     }
+
    subject.innerHTML=ans;
     var question= document.createElement("p");
     question.innerHTML=result[i].question;
+    var innerdiv =document.createElement("div");
+    innerdiv.setAttribute("class","row");
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+upvote+ result[i].upvotes+" </div>";
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+downvote+result[i].downvotes+" </div>";
     quesdiv.appendChild(subject);
     quesdiv.appendChild(question);
+    if(val.value==""){
+    quesdiv.appendChild(innerdiv);
+    }
     div.appendChild(quesdiv);
+    if(val.value==""){
+    ubtn[i].setAttribute("id",i);
+    dbtn[i].setAttribute("id",i);
+    }
 
    }
    
@@ -195,5 +233,93 @@ function heart(id){
     else{
         btn.style.color="pink";
     }
+
+}
+function Upvote(id){
+    questions[id].upvotes+=1;
+    questions.sort((a,b)=>
+    {
+    return b.upvotes-a.upvotes;
+    }
+    )
+    for(var i=0;i<questions.length;i++)
+    {
+        questions[i].id=i;
+    }
+    
+    var contain= document.getElementsByClassName("questions")[0];
+   contain.innerHTML="";
+    for(var i=0;i<questions.length;i++){
+
+    var quesdiv= document.createElement("div");
+    quesdiv.setAttribute("class","onequestion");
+    quesdiv.setAttribute("onclick","displayQues(id)");
+    quesdiv.setAttribute("id",i);
+    var subject=document.createElement("h1");
+   subject.innerHTML=questions[i].subject;
+    var question= document.createElement("p");
+    question.innerHTML=questions[i].question;
+
+    var innerdiv =document.createElement("div")
+    innerdiv.setAttribute("class","row");
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+upvote+ questions[i].upvotes+" </div>";
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+downvote+questions[i].downvotes+" </div>";
+
+    quesdiv.appendChild(subject);
+    quesdiv.appendChild(question);
+    quesdiv.appendChild(innerdiv);
+    contain.appendChild(quesdiv);
+
+    ubtn[i].setAttribute("id",i);
+    dbtn[i].setAttribute("id",i);
+
+
+
+    }
+  
+
+   
+   
+}
+function Downvote(id){
+    questions[id].downvotes+=1;
+
+    var contain= document.getElementsByClassName("questions")[0];
+   contain.innerHTML="";
+    for(var i=0;i<questions.length;i++){
+
+    var quesdiv= document.createElement("div");
+    quesdiv.setAttribute("class","onequestion");
+    quesdiv.setAttribute("onclick","displayQues(id)");
+    quesdiv.setAttribute("id",i);
+    var subject=document.createElement("h1");
+   subject.innerHTML=questions[i].subject;
+    var question= document.createElement("p");
+    question.innerHTML=questions[i].question;
+
+    var innerdiv =document.createElement("div")
+    innerdiv.setAttribute("class","row");
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+upvote+ questions[i].upvotes+" </div>";
+    innerdiv.innerHTML=innerdiv.innerHTML+" "+downvote+questions[i].downvotes+" </div>";
+
+    quesdiv.appendChild(subject);
+    quesdiv.appendChild(question);
+    quesdiv.appendChild(innerdiv);
+    contain.appendChild(quesdiv);
+
+    ubtn[i].setAttribute("id",i);
+    dbtn[i].setAttribute("id",i);
+
+
+
+    }
+  
+
+   
+   
+}
+function newQuestionForm (){
+    initialform.removeAttribute("hidden");
+    finalform.setAttribute("hidden","true");
 
 }

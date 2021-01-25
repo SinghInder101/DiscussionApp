@@ -1,5 +1,5 @@
 .header{
-    background-color: #008080;
+    background-image: linear-gradient(to right, #AA076B 0%, #61045F  51%, #AA076B  100%)
  
 }
 .white{
@@ -7,10 +7,10 @@
    
 }
 .btnsrc{
-    background-color:blue;
+    
 }
 .form{
-    background-color: pink;
+   
 }
 .leftpanel{
     background-color: blueviolet;
@@ -40,3 +40,60 @@
 size:1.5em
 
 }
+.fa-arrow-up{
+   color: seagreen;
+}
+.fa-arrow-down{
+    color:red;
+}
+
+
+
+
+.btn-grad {background-image: linear-gradient(to right, #AA076B 0%, #61045F  51%, #AA076B  100%)}
+.btn-grad {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+ }
+
+ .btn-grad:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+ 
+ .ttn-grad {background-image: linear-gradient(to right, #1D2B64 0%, #F8CDDA  51%, #1D2B64  100%)}
+ .ttn-grad {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .ttn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 
+  #subject{
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+
+  }
